@@ -78,4 +78,12 @@ def update():
 
 update_button.config(command=update)
 
+change_seconds = 60
+
+def auto_update():
+    update()
+    window.after(change_seconds * 1000, auto_update)
+
+auto_update()
+
 window.mainloop()
