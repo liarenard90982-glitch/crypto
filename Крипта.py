@@ -5,18 +5,19 @@ import time
 API_URL = "https://api.coingecko.com/api/v3/simple/price"
 
 
-COIN_IDS = ["bitcoin", "ethereum", "solana", "dogecoin"]
+COIN_IDS = ["bitcoin", "ethereum", "solana", "dogecoin", "binancecoin"]
 
 COIN_NAMES = {
     "bitcoin":  "Bitcoin (BTC)",
     "ethereum": "Ethereum (ETH)",
     "solana":   "Solana (SOL)",
     "dogecoin": "Dogecoin (DOGE)",
+    "binancecoin": "Binancecoin (BNB)",
 }
 
 window = tk.Tk()
 window.title("Курсы криптовалют")
-window.geometry("430x380")
+window.geometry("500x400")
 window.resizable(False, False)
 
 
