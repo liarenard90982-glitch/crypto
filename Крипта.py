@@ -1,6 +1,7 @@
 import tkinter as tk
 import requests
 import time
+from PIL import Image, ImageTk
 
 API_URL = "https://api.coingecko.com/api/v3/simple/price"
 
@@ -16,12 +17,21 @@ COIN_NAMES = {
 }
 
 window = tk.Tk()
-window.title("Курсы криптовалют")
-window.geometry("500x400")
+window.title("КриптоСыч")
+window.geometry("500x300")
+window.configure(background="white")
 window.resizable(False, False)
 
 
-tk.Label(window, text="Курсы криптовалют к USD", font=("Arial", 15, "bold")).pack(pady=12)
+tk.Label(window, text="Курсы криптовалют к USD", bg='white', fg='black',highlightbackground="black",
+                                    highlightthickness=2, font=("Arial", 15, "bold")).pack(pady=12)
+
+img = Image.open("coinlogo.png").resize((40, 40))
+logo_image = ImageTk.PhotoImage(img)
+
+logo_label = tk.Label(window, image=logo_image, bg="white")
+logo_label.image = logo_image
+logo_label.place(x=10, y=10)
 
 
 price_labels = {}
@@ -39,10 +49,12 @@ for coin_id in COIN_IDS:
     change_labels[coin_id] = tk.Label(row, text="", width=9, anchor="e", font=("Arial", 10))
     change_labels[coin_id].pack(side="left")
 
-status_label = tk.Label(window, text="Нажмите кнопку 'Обновить'", fg="gray")
+status_label = tk.Label(window, text="Нажмите кнопку 'Обновить'", fg="green", bg="white")
 status_label.pack(pady=8)
 
-update_button = tk.Button(window, text="Обновить курсы", width=22)
+
+update_button = tk.Button(window, text="Обновить курсы", width=22, font=("Arial", 12, "bold"),
+                                    highlightbackground="white", highlightthickness=1)
 update_button.pack(pady=5)
 
 def fetch_prices():
@@ -79,7 +91,7 @@ def update():
 
 update_button.config(command=update)
 
-change_seconds = 60
+change_seconds = 30
 
 def auto_update():
     update()
